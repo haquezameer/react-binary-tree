@@ -5,11 +5,13 @@ function Node(node) {
 }
 
 function BinaryTree(val) {
-  var root;
-  //   console.log(val);
-  if (typeof val !== undefined) {
+  this.root = null;
+  this.traverseList = [];
+  if (typeof val !== "undefined") {
     this.root = new Node(val);
-  } else throw "root is empty";
+  } else {
+    throw "root is empty";
+  }
   this.insert = function(val, dir) {
     const newNode = new Node(val);
     this.root[dir] = newNode;
@@ -59,21 +61,16 @@ function BinaryTree(val) {
   this.inorder = function(node = this.root) {
     if (node !== null) {
       this.inorder(node.left);
-      console.log(node.node);
+      this.traverseList.push(node.node);
       this.inorder(node.right);
     }
   };
+  this.init = function(root) {
+    const tree = new BinaryTree(root);
+    return tree;
+  };
+  this.getTraversed = function() {
+    return this.traverseList;
+  };
 }
-
-var tree = new BinaryTree(34);
-tree.insert(23, "left");
-tree.insert(92, "right");
-tree.insertAt(23, 12, "left");
-tree.insertAt(23, 04, "right");
-tree.insertAt(04, 16, "left");
-tree.insertAt(04, 09, "right");
-tree.levelordertraverse();
-tree.inorder();
-tree.preorder();
-tree.postorder();
-console.log(JSON.stringify(tree));
+export default BinaryTree;
