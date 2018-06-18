@@ -27,6 +27,9 @@ function BinaryTree(val) {
     while (queue.length > 0) {
       current = queue.shift();
       if (current !== null) {
+        if(search === -1 ){
+            console.log(current.node);
+        }
         if (current.node === search && search != -1) {
           return current;
         }
@@ -39,11 +42,17 @@ function BinaryTree(val) {
       }
     }
   };
+  this.printLevelOrder = function() {
+      this.levelordertraverse()
+  }
 }
 
-var tree = new BinaryTree(5);
-tree.insert(6, "left");
-tree.insert(7, "right");
+var tree = new BinaryTree(34);
+tree.insert(23, "left");
+tree.insert(92, "right");
+tree.insertAt(23, 12, "left");
+tree.insertAt(23, 04, "right");
+tree.insertAt(04, 16, "left");
+tree.insertAt(04, 09, "right");
 tree.levelordertraverse();
-tree.insertAt(6, 10, "left");
 console.log(JSON.stringify(tree));
