@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Tree from "react-tree-graph";
 import BinaryTree from "./tree";
+import animateNodeInTree from './animateNodeInTree';
 import "./App.css";
-import "react-tree-graph/dist/style.css";
+// import "react-tree-graph/dist/style.css";
 
 class App extends Component {
   constructor(props) {
@@ -37,17 +38,18 @@ class App extends Component {
       }
     };
     this.delayList = this.delayList.bind(this);
+    this.updateTree = this.updateTree.bind(this);
   }
 
   componentDidMount() {
-    var tree = new BinaryTree(34);
-    tree.insert(23, "left");
-    tree.insert(92, "right");
-    tree.insertAt(23, 12, "left");
-    tree.insertAt(23, 4, "right");
-    tree.insertAt(4, 16, "left");
-    tree.insertAt(4, 9, "right");
-    tree.inorder();
+    var tree = new BinaryTree('34');
+    tree.insert('23', "left");
+    tree.insert('92', "right");
+    tree.insertAt('23', '12', "left");
+    tree.insertAt('23', '04', "right");
+    tree.insertAt('04', '16', "left");
+    tree.insertAt('04', '09', "right");
+    tree.preorder();
     const traversedList = tree.getTraversed();
     this.setState({ traversedList }, () => {
       this.delayList();
@@ -55,33 +57,52 @@ class App extends Component {
   }
 
   delayList() {
-    const {traversedList} = this.state;
-    traversedList.forEach((listItem,index) => {
+    const { traversedList } = this.state;
+    traversedList.forEach((listItem, index) => {
       // const i =index;
       setTimeout(() => {
-        this.setState({delayedList: [...this.state.delayedList,listItem]});
-      }, 2000*index);
+        this.setState({ delayedList: [...this.state.delayedList, listItem] });
+        this.updateTree(listItem);
+      }, 1500 * index);
     });
   }
 
+  updateTree(node) {
+    const {data} = this.state;
+    if(data.name === String(node)){
+      data.circleProps = {fill: 'red'};
+      this.setState({data});
+    }
+    else{
+      const updatedTreeData = animateNodeInTree(this.state.data,String(node));
+      this.setState({data: updatedTreeData});
+    }
+  }
+
   render() {
-    const { data, delayedList } = this.state;
+    const { delayedList } = this.state;
     return (
       <div className="main-container">
         <Tree
-          data={data}
+          data={this.state.data}
           height={400}
           width={400}
-          circleProps={{ fill: "red" }}
           svgProps={{
             transform: "rotate(90)"
           }}
           textProps={{
             transform: "rotate(270)"
           }}
+          animated={true}
         />
         <div className="numbers-container">
-          <ul className="numbers-list">{delayedList.map((num,index) => <li className="numbers-list-item" key={index}>{num}</li>)}</ul>
+          <ul className="numbers-list">
+            {delayedList.map((num, index) => (
+              <li className="numbers-list-item" key={index}>
+                {num}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     );

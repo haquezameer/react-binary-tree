@@ -46,7 +46,7 @@ function BinaryTree(val) {
   };
   this.preorder = function(node = this.root) {
     if (node !== null) {
-      console.log(node.node);
+      this.traverseList.push(node.node);
       this.preorder(node.left);
       this.preorder(node.right);
     }
@@ -55,7 +55,7 @@ function BinaryTree(val) {
     if (node !== null) {
       this.postorder(node.left);
       this.postorder(node.right);
-      console.log(node.node);
+      this.traverseList.push(node.node);
     }
   };
   this.inorder = function(node = this.root) {

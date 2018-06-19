@@ -23,3 +23,7 @@
   background: #0000ff4d;
 }
 
+path.link {
+	fill: none;
+	stroke: black;
+}
