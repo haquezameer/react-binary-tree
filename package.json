@@ -6,7 +6,7 @@
     "react": "^16.4.1",
     "react-d3-tree": "^1.10.6",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^1.1.4",
     "react-transition-group": "^2.3.1",
     "react-tree-graph": "^3.1.1"
   },

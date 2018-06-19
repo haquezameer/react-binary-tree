@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       traversedList: [],
+      delayedList: [],
       data: {
         name: "34",
         children: [
@@ -35,6 +36,7 @@ class App extends Component {
         ]
       }
     };
+    this.delayList = this.delayList.bind(this);
   }
 
   componentDidMount() {
@@ -48,11 +50,22 @@ class App extends Component {
     tree.inorder();
     const traversedList = tree.getTraversed();
     this.setState({ traversedList }, () => {
-      console.log(this.state.traversedList);
+      this.delayList();
     });
   }
+
+  delayList() {
+    const {traversedList} = this.state;
+    traversedList.forEach((listItem,index) => {
+      // const i =index;
+      setTimeout(() => {
+        this.setState({delayedList: [...this.state.delayedList,listItem]});
+      }, 2000*index);
+    });
+  }
+
   render() {
-    const { data, traversedList } = this.state;
+    const { data, delayedList } = this.state;
     return (
       <div className="main-container">
         <Tree
@@ -68,7 +81,7 @@ class App extends Component {
           }}
         />
         <div className="numbers-container">
-          <ul className="numbers-list">{traversedList.map((num,index) => <li className="numbers-list-item" key={index}>{num}</li>)}</ul>
+          <ul className="numbers-list">{delayedList.map((num,index) => <li className="numbers-list-item" key={index}>{num}</li>)}</ul>
         </div>
       </div>
     );
