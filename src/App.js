@@ -46,6 +46,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.animate = this.animate.bind(this);
     this.tree = new BinaryTree("34");
+    this.resetTreeDiagram = this.resetTreeDiagram.bind(this);
   }
 
   componentDidMount() {
@@ -86,8 +87,8 @@ class App extends Component {
   }
 
   handleChange(selectedSort) {
-    this.setState({ selectedSort, delayedList:[], traversedList: [] }, () => {
-      this.animate();
+    this.setState({ selectedSort, delayedList: [], traversedList: [] }, () => {
+      this.resetTreeDiagram();
     });
   }
 
@@ -95,8 +96,7 @@ class App extends Component {
     const { selectedSort } = this.state;
     if (selectedSort.value === "inorder") {
       this.tree.inorder();
-    }
-    else if (selectedSort.value === "preorder") {
+    } else if (selectedSort.value === "preorder") {
       this.tree.preorder();
     } else {
       this.tree.postorder();
@@ -104,6 +104,37 @@ class App extends Component {
     const traversedList = this.tree.getTraversed();
     this.setState({ traversedList }, () => {
       this.delayList();
+    });
+  }
+
+  resetTreeDiagram() {
+    const data = {
+      name: "34",
+      children: [
+        {
+          name: "92"
+        },
+        {
+          name: "23",
+          children: [
+            {
+              name: "04",
+              children: [
+                {
+                  name: "09"
+                },
+                { name: "16" }
+              ]
+            },
+            {
+              name: "12"
+            }
+          ]
+        }
+      ]
+    };
+    this.setState({ data }, () => {
+      this.animate();
     });
   }
 
