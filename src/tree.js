@@ -45,6 +45,8 @@ function BinaryTree(val) {
     }
   };
   this.preorder = function(node = this.root) {
+    if (node === this.root && this.traverseList.length > 0)
+      this.traverseList = [];
     if (node !== null) {
       this.traverseList.push(node.node);
       this.preorder(node.left);
@@ -52,6 +54,8 @@ function BinaryTree(val) {
     }
   };
   this.postorder = function(node = this.root) {
+    if (node === this.root && this.traverseList.length > 0)
+      this.traverseList = [];
     if (node !== null) {
       this.postorder(node.left);
       this.postorder(node.right);
@@ -59,6 +63,8 @@ function BinaryTree(val) {
     }
   };
   this.inorder = function(node = this.root) {
+    if (node === this.root && this.traverseList.length > 0)
+      this.traverseList = [];
     if (node !== null) {
       this.inorder(node.left);
       this.traverseList.push(node.node);
