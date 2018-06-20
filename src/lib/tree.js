@@ -1,10 +1,14 @@
+// The tree data structure file for the app to store nodes and performing traversal
+
 function Node(node) {
+  // Constructor function to create a node
   this.node = node;
   this.left = null;
   this.right = null;
 }
 
 function BinaryTree(val) {
+  // Constructor function to create a Binary tree
   this.root = null;
   this.traverseList = [];
   if (typeof val !== "undefined") {
@@ -13,20 +17,23 @@ function BinaryTree(val) {
     throw "root is empty";
   }
   this.insert = function(val, dir) {
+    // Insert node at root to left or right provided as dir
     const newNode = new Node(val);
     this.root[dir] = newNode;
   };
   this.insertAt = function(node, val, dir) {
-    const nodepos = this.levelordertraverse(node);
+    // Insert node at specified node to left or right provided as dir
+    const nodepos = this.levelordertraverse(node); // Makes use of levelordertraverse api to find the node and insert new node
     const newNode = new Node(val);
     nodepos[dir] = newNode;
   };
   this.levelordertraverse = function(search = -1) {
+    // Perform levelorder traversel to return the traversed list or support insertAt api. 
+    // If search=-1 then returns traversed list else return the node that was to be searched.
     const queue = [];
     var current = this.root;
     queue.push(current);
-    if ( this.traverseList.length > 0)
-      this.traverseList = [];
+    if (this.traverseList.length > 0) this.traverseList = [];
     while (queue.length > 0) {
       current = queue.shift();
       if (current !== null) {
@@ -45,7 +52,7 @@ function BinaryTree(val) {
       }
     }
   };
-  this.preorder = function(node = this.root) {
+  this.preorder = function(node = this.root) { // Perform preorder traversal of the tree
     if (node === this.root && this.traverseList.length > 0)
       this.traverseList = [];
     if (node !== null) {
@@ -54,7 +61,7 @@ function BinaryTree(val) {
       this.preorder(node.right);
     }
   };
-  this.postorder = function(node = this.root) {
+  this.postorder = function(node = this.root) { // Perform postorder traversal of the tree
     if (node === this.root && this.traverseList.length > 0)
       this.traverseList = [];
     if (node !== null) {
@@ -63,7 +70,7 @@ function BinaryTree(val) {
       this.traverseList.push(node.node);
     }
   };
-  this.inorder = function(node = this.root) {
+  this.inorder = function(node = this.root) { // Perform inorder traversal of the tree
     if (node === this.root && this.traverseList.length > 0)
       this.traverseList = [];
     if (node !== null) {
@@ -72,11 +79,7 @@ function BinaryTree(val) {
       this.inorder(node.right);
     }
   };
-  this.init = function(root) {
-    const tree = new BinaryTree(root);
-    return tree;
-  };
-  this.getTraversed = function() {
+  this.getTraversed = function() { // Get the list of traversed nodes after calling any traversal api
     return this.traverseList;
   };
 }

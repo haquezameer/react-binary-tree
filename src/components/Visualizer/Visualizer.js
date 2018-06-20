@@ -7,6 +7,7 @@ import "./Visualizer.css";
 
 const Visualizer = ({ data, delayedList }) => (
   <div className="visualizer-container">
+    {/* Render Tree with data passed as prop */}
     <Tree
       data={data}
       height={400}
@@ -19,6 +20,7 @@ const Visualizer = ({ data, delayedList }) => (
       }}
       animated={true}
     />
+    {/* Render List of traversed nodes passed as prop */}
     <TraversedList delayedList={delayedList} />
   </div>
 );
