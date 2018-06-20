@@ -1,0 +1,45 @@
+.numbers-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.numbers-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.numbers-list-item {
+  padding: 2rem;
+  background: #0000ff4d;
+  margin: 0.2rem;
+  height: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .numbers-list-item {
+    padding: 0.5rem;
+  }
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}

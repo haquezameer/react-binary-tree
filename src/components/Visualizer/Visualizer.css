@@ -1,0 +1,20 @@
+.visualizer-container {
+  width: 70%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+path.link {
+  fill: none;
+  stroke: black;
+}
+
+@media only screen and (max-width: 500px) {
+  .visualizer-container {
+    width: 100%;
+    min-height: auto;
+  }
+}

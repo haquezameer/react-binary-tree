@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import Tree from "react-tree-graph";
-import {CSSTransition,TransitionGroup} from 'react-transition-group';
 
-
-import {Controls} from './components';
+import {Controls,Visualizer} from './components';
 
 import BinaryTree from "./lib/tree";
 import animateNodeInTree from "./lib/animateNodeInTree";
@@ -140,33 +137,7 @@ class App extends Component {
     const { delayedList } = this.state;
     return (
       <div className="main-container">
-        <div className="visualizer-container">
-        <Tree
-          data={this.state.data}
-          height={400}
-          width={400}
-          svgProps={{
-            transform: "rotate(90)"
-          }}
-          textProps={{
-            transform: "rotate(270)"
-          }}
-          animated={true}
-        />
-        <div className="numbers-container">
-          <ul className="numbers-list">
-          <TransitionGroup component={null}>
-            {delayedList.map((num, index) => (
-            <CSSTransition key={index} timeout={500} classNames="fade">
-              <li className="numbers-list-item" key={index}>
-                {num}
-              </li>
-            </CSSTransition>
-            ))}
-            </TransitionGroup>
-          </ul>
-        </div>
-        </div>
+        <Visualizer data={this.state.data} delayedList={this.state.delayedList} />
         <Controls selectedTraversal={this.state.selectedTraversal} handleChange={this.handleChange} />
       </div>
     );
