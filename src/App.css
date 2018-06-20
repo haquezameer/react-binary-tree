@@ -9,7 +9,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .numbers-list {
@@ -17,12 +16,14 @@
   margin: 0;
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .numbers-list-item {
   padding: 2rem;
   background: #0000ff4d;
-  margin: 0.5rem;
+  margin: 0.2rem;
   height: 1rem;
 }
 
@@ -40,12 +41,6 @@ path.link {
   align-content: center;
 }
 
-@media only screen and (max-width: 500px)  {
-  .visualizer-container{
-    width: 100%;  
-  }
-}
-
 .controls-container {
   width: 30%;
   min-height: 100vh;
@@ -57,8 +52,16 @@ path.link {
 }
 
 @media only screen and (max-width: 500px)  {
+  .visualizer-container{
+    width: 100%;
+    min-height: auto;  
+  }
   .controls-container{
-    width: 100%;  
+    width: 100%;
+    min-height: auto; 
+  }
+  .numbers-list-item {
+    padding: 0.5rem;
   }
 }
 

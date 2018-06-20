@@ -33,7 +33,7 @@ function BinaryTree(val) {
         if (search === -1) {
           this.traverseList.push(current.node);
         }
-        if (current.node === search && search != -1) {
+        if (current.node === search && search !== -1) {
           return current;
         }
         if (current.left !== null) {
