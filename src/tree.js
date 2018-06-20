@@ -25,12 +25,13 @@ function BinaryTree(val) {
     const queue = [];
     var current = this.root;
     queue.push(current);
-
+    if ( this.traverseList.length > 0)
+      this.traverseList = [];
     while (queue.length > 0) {
       current = queue.shift();
       if (current !== null) {
         if (search === -1) {
-          console.log(current.node);
+          this.traverseList.push(current.node);
         }
         if (current.node === search && search != -1) {
           return current;

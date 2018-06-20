@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Tree from "react-tree-graph";
 import Select from "react-select";
+import {CSSTransition,TransitionGroup} from 'react-transition-group';
 
 import BinaryTree from "./tree";
 import animateNodeInTree from "./animateNodeInTree";
@@ -50,18 +51,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //var tree = new BinaryTree("34");
     this.tree.insert("23", "left");
     this.tree.insert("92", "right");
     this.tree.insertAt("23", "12", "left");
     this.tree.insertAt("23", "04", "right");
     this.tree.insertAt("04", "16", "left");
     this.tree.insertAt("04", "09", "right");
-    // this.tree.preorder();
-    // const traversedList = this.tree.getTraversed();
-    // this.setState({ traversedList }, () => {
-    //   this.delayList();
-    // });
   }
 
   delayList() {
@@ -98,9 +93,11 @@ class App extends Component {
       this.tree.inorder();
     } else if (selectedSort.value === "preorder") {
       this.tree.preorder();
-    } else {
+    } else if (selectedSort.value === "postorder") {
       this.tree.postorder();
     }
+    else 
+      this.tree.levelordertraverse();
     const traversedList = this.tree.getTraversed();
     this.setState({ traversedList }, () => {
       this.delayList();
@@ -142,6 +139,7 @@ class App extends Component {
     const { delayedList } = this.state;
     return (
       <div className="main-container">
+        <div className="visualizer-container">
         <Tree
           data={this.state.data}
           height={400}
@@ -156,23 +154,31 @@ class App extends Component {
         />
         <div className="numbers-container">
           <ul className="numbers-list">
+          <TransitionGroup component={null}>
             {delayedList.map((num, index) => (
+            <CSSTransition key={index} timeout={500} classNames="fade">
               <li className="numbers-list-item" key={index}>
                 {num}
               </li>
+            </CSSTransition>
             ))}
+            </TransitionGroup>
           </ul>
         </div>
-        <div>
+        </div>
+        <div className="controls-container">
           <Select
             name="sort-select"
             value={this.state.selectedSort && this.state.selectedSort.value}
             onChange={this.handleChange}
+            className="select-field"
             options={[
               { label: "preorder", value: "preorder" },
               { label: "inorder", value: "inorder" },
-              { label: "postorder", value: "postorder" }
+              { label: "postorder", value: "postorder" },
+              { label: "level order", value: "level order" }
             ]}
+            clearable={false}
           />
         </div>
       </div>

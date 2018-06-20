@@ -1,29 +1,82 @@
 .main-container {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .numbers-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .numbers-list {
   padding: 0;
   margin: 0;
   list-style-type: none;
+  display: flex;
 }
 
 .numbers-list-item {
-  display: inline-block;
   padding: 2rem;
-  margin: 0.5rem;
   background: #0000ff4d;
+  margin: 0.5rem;
+  height: 1rem;
 }
 
 path.link {
 	fill: none;
 	stroke: black;
+}
+
+.visualizer-container {
+  width: 70%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+@media only screen and (max-width: 500px)  {
+  .visualizer-container{
+    width: 100%;  
+  }
+}
+
+.controls-container {
+  width: 30%;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+@media only screen and (max-width: 500px)  {
+  .controls-container{
+    width: 100%;  
+  }
+}
+
+.select-field {
+  width: 150px;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }
