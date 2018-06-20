@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import Tree from "react-tree-graph";
-import Select from "react-select";
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
 
-import BinaryTree from "./tree";
-import animateNodeInTree from "./animateNodeInTree";
+
+import {Controls} from './components';
+
+import BinaryTree from "./lib/tree";
+import animateNodeInTree from "./lib/animateNodeInTree";
 
 import "./App.css";
-import "react-select/dist/react-select.css";
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class App extends Component {
           }
         ]
       },
-      selectedSort: ""
+      selectedTraversal: ""
     };
     this.delayList = this.delayList.bind(this);
     this.updateTree = this.updateTree.bind(this);
@@ -81,19 +82,19 @@ class App extends Component {
     }
   }
 
-  handleChange(selectedSort) {
-    this.setState({ selectedSort, delayedList: [], traversedList: [] }, () => {
+  handleChange(selectedTraversal) {
+    this.setState({ selectedTraversal, delayedList: [], traversedList: [] }, () => {
       this.resetTreeDiagram();
     });
   }
 
   animate() {
-    const { selectedSort } = this.state;
-    if (selectedSort.value === "inorder") {
+    const { selectedTraversal } = this.state;
+    if (selectedTraversal.value === "inorder") {
       this.tree.inorder();
-    } else if (selectedSort.value === "preorder") {
+    } else if (selectedTraversal.value === "preorder") {
       this.tree.preorder();
-    } else if (selectedSort.value === "postorder") {
+    } else if (selectedTraversal.value === "postorder") {
       this.tree.postorder();
     }
     else 
@@ -166,21 +167,7 @@ class App extends Component {
           </ul>
         </div>
         </div>
-        <div className="controls-container">
-          <Select
-            name="sort-select"
-            value={this.state.selectedSort && this.state.selectedSort.value}
-            onChange={this.handleChange}
-            className="select-field"
-            options={[
-              { label: "preorder", value: "preorder" },
-              { label: "inorder", value: "inorder" },
-              { label: "postorder", value: "postorder" },
-              { label: "level order", value: "level order" }
-            ]}
-            clearable={false}
-          />
-        </div>
+        <Controls selectedTraversal={this.state.selectedTraversal} handleChange={this.handleChange} />
       </div>
     );
   }

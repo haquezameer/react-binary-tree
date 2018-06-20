@@ -41,32 +41,15 @@ path.link {
   align-content: center;
 }
 
-.controls-container {
-  width: 30%;
-  min-height: 100vh;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
 
 @media only screen and (max-width: 500px)  {
   .visualizer-container{
     width: 100%;
     min-height: auto;  
   }
-  .controls-container{
-    width: 100%;
-    min-height: auto; 
-  }
   .numbers-list-item {
     padding: 0.5rem;
   }
-}
-
-.select-field {
-  width: 150px;
 }
 
 .fade-enter {
