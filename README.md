@@ -1,6 +1,8 @@
 # Binary Tree Traversal visualizer
 
 This project is a binary tree traversal visualizer.
+Check out [Live demo](https://jovial-snyder-8b8319.netlify.com/).
+
 Supported Traversals:
 ```
 1. Level Order Traversal
