@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.4.1",
     "react-d3-tree": "^1.10.6",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-scripts": "^1.1.4",
     "react-select": "^1.2.1",
     "react-transition-group": "^2.3.1",
